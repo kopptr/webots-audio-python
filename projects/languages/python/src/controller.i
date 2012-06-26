@@ -24,12 +24,14 @@
 #include <webots/ImageRef.hpp>
 #include <webots/LED.hpp>
 #include <webots/LightSensor.hpp>
+#include <webots/Microphone.hpp>
 #include <webots/utils/Motion.hpp>
 #include <webots/Node.hpp>
 #include <webots/Pen.hpp>
 #include <webots/Receiver.hpp>
 #include <webots/Robot.hpp>
 #include <webots/Servo.hpp>
+#include <webots/Speaker.hpp>
 #include <webots/Supervisor.hpp>
 #include <webots/TouchSensor.hpp>
 
@@ -129,7 +131,7 @@ using namespace std;
         PyObject* dim3 = PyList_New(3);
         PyList_SetItem(dim2,y,dim3);
         for (ch = 0; ch < 3; ch++) {
-          PyList_SetItem(dim3,ch,PyInt_FromLong((unsigned int)(im[3*(x+y*width)+ch])));     
+          PyList_SetItem(dim3,ch,PyInt_FromLong((unsigned int)(im[3*(x+y*width)+ch])));
         }
       }
     }
@@ -166,7 +168,7 @@ using namespace std;
     fprintf(stderr,"Warning: Camera.rangeImageGetValue is deprecated, please use Camera.rangeImageGetDepth instead\n");
     return value;
   }
-  
+
   static PyObject* rangeImageGetDepth(PyObject *im, int width, int x, int y){
     if(!PyList_Check(im)){
       PyErr_SetString(PyExc_TypeError, "in method 'Camera_rangeImageGetValue', argument 2 of type 'PyList'\n");
@@ -179,7 +181,7 @@ using namespace std;
     }
     return value;
   }
-  
+
   static PyObject* imageGetRed(PyObject *im, int width, int x, int y){
     if(!PyString_Check(im)) {
       PyErr_SetString(PyExc_TypeError, "in method 'Camera_imageGetRed', argument 2 of type 'PyString'\n");
@@ -338,6 +340,18 @@ using namespace std;
 %include <webots/LightSensor.hpp>
 
 //----------------------------------------------------------------------------------------------
+//  Microphone
+//----------------------------------------------------------------------------------------------
+
+%typemap(out) const void * {
+  $result = PyString_FromStringAndSize((const char*) $1,arg1->getDataSize());
+}
+
+%include <webots/Microphone.hpp>
+
+%typemap(out) const void *;
+
+//----------------------------------------------------------------------------------------------
 //  Motion
 //----------------------------------------------------------------------------------------------
 
@@ -377,6 +391,19 @@ using namespace std;
 %include <webots/Servo.hpp>
 
 //----------------------------------------------------------------------------------------------
+//  Speaker
+//----------------------------------------------------------------------------------------------
+
+%typemap(in) (const void *data, int size) {
+  $1 = PyString_AsString($input);
+  $2 = PyString_Size($input);
+}
+
+%include <webots/Speaker.hpp>
+
+%typemap(in) (const void *data, int size);
+
+//----------------------------------------------------------------------------------------------
 //  TouchSensor
 //----------------------------------------------------------------------------------------------
 
@@ -397,9 +424,11 @@ using namespace std;
 %ignore webots::Robot::getGyro(const std::string &name);
 %ignore webots::Robot::getLED(const std::string &name);
 %ignore webots::Robot::getLightSensor(const std::string &name);
+%ignore webots::Robot::getMicrophone(const std::string &name);
 %ignore webots::Robot::getPen(const std::string &name);
 %ignore webots::Robot::getReceiver(const std::string &name);
 %ignore webots::Robot::getServo(const std::string &name);
+%ignore webots::Robot::getSpeaker(const std::string &name);
 %ignore webots::Robot::getTouchSensor(const std::string &name);
 
 %extend webots::Robot {
@@ -515,6 +544,16 @@ using namespace std;
       lightSensor = self.createLightSensor(name)
       self.devices[name] = lightSensor
       return lightSensor
+    def createMicrophone(self, name):
+      return Microphone(name)
+    def getMicrophone(self,name):
+      if (self.devices.has_key(name)):
+        return self.devices[name]
+      if (not Device.exists(name)):
+        return None
+      microphone = self.createMicrophone(name)
+      self.devices[name] = microphone
+      return microphone
     def createPen(self, name):
       return Pen(name)
     def getPen(self,name):
@@ -545,6 +584,16 @@ using namespace std;
       servo = self.createServo(name)
       self.devices[name] = servo
       return servo
+    def createSpeaker(self, name):
+      return Speaker(name)
+    def getSpeaker(self,name):
+      if (self.devices.has_key(name)):
+        return self.devices[name]
+      if (not Device.exists(name)):
+        return None
+      speaker = self.createSpeaker(name)
+      self.devices[name] = speaker
+      return speaker
     def createTouchSensor(self, name):
       return TouchSensor(name)
     def getTouchSensor(self,name):
