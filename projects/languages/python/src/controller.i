@@ -344,7 +344,7 @@ using namespace std;
 //----------------------------------------------------------------------------------------------
 
 %typemap(out) const void * {
-  $result = PyString_FromStringAndSize((const char*) $1,arg1->getDataSize());
+  $result = PyString_FromStringAndSize((const char*) $1,arg1->getSampleSize());
 }
 
 %include <webots/Microphone.hpp>
