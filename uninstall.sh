@@ -9,6 +9,7 @@ INTERFACE=projects/languages/python/src
 echo 'Restoring the backups...'
 mv ${WEBOTS_HOME}/${INCLUDE}/Robot.hpp.backup ${WEBOTS_HOME}/${INCLUDE}/Robot.hpp
 mv ${WEBOTS_HOME}/${SRC}/Robot.cpp.backup ${WEBOTS_HOME}/${SRC}/Robot.cpp
+mv ${WEBOTS_HOME}/${SRC}/Makefile.backup ${WEBOTS_HOME}/${SRC}/Makefile
 mv ${WEBOTS_HOME}/${INTERFACE}/controller.i.backup ${WEBOTS_HOME}/${INTERFACE}/controller.i
 
 echo 'Removing unneeded files...'

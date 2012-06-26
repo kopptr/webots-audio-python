@@ -13,5 +13,5 @@
 using namespace webots;
 
 void Speaker::emitSample(const void *data, int size) {
-   return wb_speaker_emit_sample(getTag(), data, size)
+   return wb_speaker_emit_sample(getTag(), data, size);
 }

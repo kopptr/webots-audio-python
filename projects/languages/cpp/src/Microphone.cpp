@@ -25,6 +25,6 @@ const void *Microphone::getSampleData() {
 }
 
 int Microphone::getSampleSize() const {
-   return wb_microphone_get_sample_size(getTag())
+   return wb_microphone_get_sample_size(getTag());
 }
 
