@@ -61,23 +61,23 @@ double Robot::getBasicTimeStep() const {
 void Robot::batterySensorEnable(int ms){
   wb_robot_battery_sensor_enable(ms);
 }
- 
+
 void Robot::batterySensorDisable(){
   wb_robot_battery_sensor_disable();
 }
- 
+
 double Robot::batterySensorGetValue(){
   return wb_robot_battery_sensor_get_value();
 }
- 
+
 void Robot::keyboardEnable(int ms){
   wb_robot_keyboard_enable(ms);
 }
- 
+
 void Robot::keyboardDisable(){
   wb_robot_keyboard_disable();
 }
- 
+
 int Robot::keyboardGetKey(){
   return wb_robot_keyboard_get_key();
 }
@@ -269,6 +269,23 @@ LightSensor *Robot::createLightSensor(const string &name) const {
   return new LightSensor(name);
 }
 
+Microphone *Robot::getMicrophone(const string &name) {
+   Device *device = getDevice(name);
+   if (device)
+      return dynamic_cast<Microphone*>(device);
+
+   if (! Device::exists(name))
+      return NULL;
+
+   Microphone *microphone = createMicrophone(name);
+   insertDevice(microphone);
+   return microphone;
+}
+
+Microphone *Robot::createMicrophone(const string &name) const {
+  return new Microphone(name);
+}
+
 Pen *Robot::getPen(const string &name) {
   Device *device = getDevice(name);
   if (device)
@@ -318,6 +335,23 @@ Servo *Robot::getServo(const string &name) {
 
 Servo* Robot::createServo(const string &name) const {
   return new Servo(name);
+}
+
+Speaker *Robot::getSpeaker(const string &name) {
+   Device *device = getDevice(name);
+   if (device)
+      return dynamic_cast<Speaker*>(device);
+
+   if (! Device::exists(name))
+      return NULL;
+
+   Speaker *speaker = createSpeaker(name);
+   insertDevice(speaker);
+   return speaker;
+}
+
+Speaker *Robot::createSpeaker(const string &name) const {
+  return new Speaker(name);
 }
 
 TouchSensor *Robot::getTouchSensor(const string &name) {

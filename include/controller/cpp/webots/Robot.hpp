@@ -21,10 +21,12 @@
 #include <webots/Gyro.hpp>
 #include <webots/LED.hpp>
 #include <webots/LightSensor.hpp>
+#include <webots/Microphone.hpp>
 #include <webots/Pen.hpp>
 #include <webots/Receiver.hpp>
 #include <webots/TouchSensor.hpp>
 #include <webots/Servo.hpp>
+#include <webots/Speaker.hpp>
 #include <map>
 
 namespace webots {
@@ -77,9 +79,11 @@ namespace webots {
       Gyro *getGyro(const std::string &name);
       LED *getLED(const std::string &name);
       LightSensor *getLightSensor(const std::string &name);
+      Microphone *getMicrophone(const std::string &name);
       Pen *getPen(const std::string &name);
       Receiver *getReceiver(const std::string &name);
       Servo *getServo(const std::string &name);
+      Speaker *getSpeaker(const std::string &name);
       TouchSensor *getTouchSensor(const std::string &name);
 
     protected:
@@ -94,9 +98,11 @@ namespace webots {
       virtual Gyro *createGyro(const std::string &name) const;
       virtual LED *createLED(const std::string &name) const;
       virtual LightSensor *createLightSensor(const std::string &name) const;
+      virtual Microphone *createMicrophone(const std::string &name) const;
       virtual Pen *createPen(const std::string &name) const;
       virtual Receiver *createReceiver(const std::string &name) const;
       virtual Servo *createServo(const std::string &name) const;
+      virtual Speaker *createSpeaker(const std::string &name) const;
       virtual TouchSensor *createTouchSensor(const std::string &name) const;
 
     private:
