@@ -2,7 +2,7 @@
 /* File:          Microphone.cpp                                                  */
 /* Date:          June 12                                                         */
 /* Description:   Header file for the OO interface                                */
-/* Authors:       Tim Kopp                                                        */
+/* Author:        Tim Kopp                                                        */
 /* Copyright (c) 2012 SRC Inc. - www.srcinc.com                                   */
 /**********************************************************************************/
 

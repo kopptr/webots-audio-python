@@ -4,6 +4,7 @@
 /* Description:  C++ file for the OO interface                                                         */
 /* Author:       fabien.rohrer@cyberbotics.com                                                         */
 /* Copyright (c) 2008 Cyberbotics - www.cyberbotics.com                                                */
+/* Modified in June 12 by Tim Kopp, Copyright (c) 2012 SRC Inc. - www.srcinc.com*/
 /*******************************************************************************************************/
 
 #define WB_ALLOW_MIXING_C_AND_CPP_API

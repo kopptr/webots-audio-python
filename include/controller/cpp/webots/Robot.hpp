@@ -4,6 +4,7 @@
 /* Description:  Header file for the OO interface                                                      */
 /* Author:       fabien.rohrer@cyberbotics.com                                                         */
 /* Copyright (c) 2008 Cyberbotics - www.cyberbotics.com                                                */
+/* Modified in June 12 by Tim Kopp, copyright (x) 2012 SRC Inc. - www.srcinc.com*/
 /*******************************************************************************************************/
 
 #ifndef ROBOT_HPP
