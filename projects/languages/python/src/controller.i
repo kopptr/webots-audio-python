@@ -4,6 +4,7 @@
 /* Description:  Swig interface which maps the OO C++ files into a python module called "controller"   */
 /* Author:       fabien.rohrer@cyberbotics.com                                                         */
 /* Copyright (c) 2008 Cyberbotics - www.cyberbotics.com                                                */
+/* Modified in June 12 by Tim Kopp, Copyright 2012 SRC Inc. - www.srcinc.com*/
 /*******************************************************************************************************/
 
 %module controller
