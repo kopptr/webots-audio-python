@@ -1,0 +1,8 @@
+This project adds audio device support for Webots in the Python environment.
+
+The current version of Webots (6.4.4) contains support for the simulated
+Microphone and Speaker devices in the C language, but does not contain support
+when using other languages. This package adds support for python (and in doing
+so, C++).
+
+Webots is a trademark of Cyberbotics Ltd.
