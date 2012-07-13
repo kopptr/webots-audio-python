@@ -18,12 +18,10 @@ rm ${WEBOTS_HOME}/${SRC}/{Microphone,Speaker}.cpp
 
 echo 'Building the original C++ wrapper...'
 cd ${WEBOTS_HOME}/projects/languages/cpp/src
-make clean
 make
 
 echo 'Building the original Python bindings...'
 cd ${WEBOTS_HOME}/projects/languages/python/src
-make clean
 make
 
 echo 'Done'
